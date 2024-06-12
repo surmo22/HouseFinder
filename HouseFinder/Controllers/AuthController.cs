@@ -1,5 +1,5 @@
 ﻿using HouseFinderBackEnd.Data;
-using HouseFinderBackEnd.Services;
+using HouseFinderBackEnd.Services.AuthService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -21,6 +21,8 @@ namespace HouseFinderBackEnd.Controllers
         }
 
         [HttpPost("register")]
+        [ProducesResponseType(StatusCodes.Status200OK)] // Indicates a successful registration with a token in the response
+        [ProducesResponseType(StatusCodes.Status400BadRequest)] // Indicates a failed registration due to invalid model state
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             if (!ModelState.IsValid)
@@ -40,6 +42,9 @@ namespace HouseFinderBackEnd.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)] // Indicates a successful login with a token in the response
+        [ProducesResponseType(StatusCodes.Status400BadRequest)] // Indicates a failed login due to invalid model state
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)] // Indicates a failed login due to invalid credentials
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             if (!ModelState.IsValid)

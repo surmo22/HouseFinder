@@ -1,6 +1,6 @@
 ﻿using HouseFinderBackEnd.Data;
 
-namespace HouseFinderBackEnd.Services
+namespace HouseFinderBackEnd.Services.AuthService
 {
     public interface IAuthService
     {

@@ -1,4 +1,4 @@
-﻿namespace HouseFinderBackEnd.Data
+﻿namespace HouseFinderBackEnd.Data.Buildings
 {
     public class Property
     {
@@ -7,11 +7,15 @@
         public string Description { get; set; }
         public string Address { get; set; }
         public decimal Price { get; set; }
-        public string ImageUrl { get; set; }
+        public List<string> ImageUrls { get; set; }
         public DateTime CreatedAt { get; set; }
         public string ContactPhone { get; set; }
+
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
 
         public string UserId { get; set; }
         public User User { get; set; }
     }
+
 }

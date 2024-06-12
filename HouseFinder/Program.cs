@@ -1,5 +1,5 @@
 using HouseFinderBackEnd.Data;
-using HouseFinderBackEnd.Services;
+using HouseFinderBackEnd.Services.AuthService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +18,11 @@ services.AddIdentity<User, IdentityRole>()
     .AddDefaultTokenProviders();
 
 services.AddScoped<IAuthService, AuthService>();
+
+services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "HouseFinderBackEnd", Version = "v1" });
+});
 
 services.AddAuthentication(options =>
 {
@@ -45,5 +50,11 @@ services.AddAuthentication(options =>
 var app = builder.Build();
 app.UseAuthentication();
 app.MapControllers();
-
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/swagger");
+    return Task.CompletedTask;
+});
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HouseFinderBackEnd v1"));
 app.Run();
