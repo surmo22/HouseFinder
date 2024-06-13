@@ -8,6 +8,8 @@ namespace HouseFinderBackEnd.Services.PropertyService
         Task DeleteProperty(int id);
         Task<IEnumerable<Property>> GetProperties(int page, int pageSize);
         Task<Property> GetProperty(int id);
+        Task GetUserPropertyForSale(string? userId);
+        Task<IEnumerable<Property>> GetUserWatchList(string? userId);
         Task<Property> PostProperty(Property property);
     }
 }

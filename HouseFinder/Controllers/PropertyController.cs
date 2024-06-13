@@ -1,7 +1,10 @@
 ﻿using HouseFinderBackEnd.Data.Buildings;
 using HouseFinderBackEnd.Services.PropertyService;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace HouseFinderBackEnd.Controllers
 {
@@ -36,6 +39,7 @@ namespace HouseFinderBackEnd.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Property>> PostProperty(Property property)
@@ -49,17 +53,18 @@ namespace HouseFinderBackEnd.Controllers
                 var newProperty = await _propertyService.PostProperty(property);
                 return CreatedAtAction("GetProperty", new { id = newProperty.Id }, newProperty);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return BadRequest(new { message = "An error occurred while updating the database. Please try again." });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, new { message = "An unexpected error occurred. Please try again." });
             }
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteProperty(int id)

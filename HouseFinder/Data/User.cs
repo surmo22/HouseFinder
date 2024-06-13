@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HouseFinderBackEnd.Data.Buildings;
+using Microsoft.AspNetCore.Identity;
 
 namespace HouseFinderBackEnd.Data
 {
@@ -6,5 +7,7 @@ namespace HouseFinderBackEnd.Data
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public WatchList WatchList { get; set; } = new WatchList();
+        public UserPropertiesForSale UserPropertiesForSale { get; set; } = new UserPropertiesForSale();
     }
 }

@@ -20,5 +20,7 @@ namespace HouseFinderBackEnd.Data
         }
 
         public DbSet<Property> Properties { get; set; }
+        public DbSet<UserPropertiesForSale> UserPropertiesForSales { get; set; }
+        public DbSet<WatchList> WatchLists { get; set; }
     }
 }
