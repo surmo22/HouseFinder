@@ -1,5 +1,6 @@
-﻿using HouseFinderBackEnd.Data;
+﻿using HouseFinderBackEnd.Data.Models.UserModels;
 using HouseFinderBackEnd.Services.AuthService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -60,6 +61,13 @@ namespace HouseFinderBackEnd.Controllers
             {
                 return Unauthorized();
             }
+        }
+
+        [Authorize]
+        [HttpGet("protected")]
+        public IActionResult ProtectedEndpoint()
+        {
+            return Ok("This is a protected endpoint.");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using HouseFinderBackEnd.Data;
+﻿using HouseFinderBackEnd.Data.Models.UserModels;
 
 namespace HouseFinderBackEnd.Services.AuthService
 {

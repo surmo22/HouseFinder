@@ -1,4 +1,5 @@
 ﻿using HouseFinderBackEnd.Data.Buildings;
+using HouseFinderBackEnd.Data.Models;
 using HouseFinderBackEnd.Services.PropertyService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -40,9 +41,10 @@ namespace HouseFinderBackEnd.Controllers
 
         [HttpPost]
         [Authorize]
+  
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Property>> PostProperty(Property property)
+        public async Task<ActionResult<Property>> PostProperty(PropertyModel property)
         {
             if (!ModelState.IsValid)
             {

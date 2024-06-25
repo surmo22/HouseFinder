@@ -1,4 +1,4 @@
-﻿namespace HouseFinderBackEnd.Data
+﻿namespace HouseFinderBackEnd.Data.Models.UserModels
 {
     public class RegisterModel
     {
